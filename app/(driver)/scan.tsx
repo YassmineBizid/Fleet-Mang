@@ -110,7 +110,7 @@ export default function ScanScreen() {
         quality: 0.9,
         base64: false,
         skipProcessing: false,
-        // FIX: shutterSound is not a valid option in expo-camera v14+; removed to avoid warnings
+        shutterSound: false,
       });
       setPhoto(data.uri);
       setErrorMessage(null);
@@ -140,7 +140,7 @@ export default function ScanScreen() {
 
       const response = await axios.post<ExtractedData>(ocrUrl, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
-        timeout: 30000,
+        // timeout: 30000,
         // FIX: Needed on Android to avoid multipart boundary issues
         transformRequest: (data) => data,
       });
@@ -183,7 +183,7 @@ export default function ScanScreen() {
         { address },
         {
           headers: { 'Content-Type': 'application/json' },
-          timeout: 15000,
+          // timeout: 15000,
         }
       );
 

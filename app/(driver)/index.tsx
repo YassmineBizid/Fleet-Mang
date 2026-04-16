@@ -8,6 +8,7 @@ import StatCard from '../../components/ui/StatCard';
 import MenuCard from '../../components/ui/MenuCard';
 import { useRouter } from 'expo-router';
 import { LogOut, Bell } from 'lucide-react-native';
+import { Alert } from 'react-native';
 
 export default function DriverDashboard() {
   const { user, logout } = useAuthStore();
@@ -16,6 +17,26 @@ export default function DriverDashboard() {
 
   const pendingInvoices = invoices.filter(inv => inv.status === 'pending' || inv.status === 'scanned').length;
   const deliveredToday = invoices.filter(inv => inv.status === 'delivered').length;
+  const handleLogout = () => {
+  Alert.alert(
+    "Déconnexion",
+    "Voulez-vous vraiment vous déconnecter ?",
+    [
+      {
+        text: "Annuler",
+        style: "cancel",
+      },
+      {
+        text: "Se déconnecter",
+        style: "destructive",
+        onPress: () => {
+          logout();
+          router.replace('/login');
+        },
+      },
+    ]
+  );
+};
 
   return (
     <SafeAreaView style={styles.container}>
@@ -27,11 +48,20 @@ export default function DriverDashboard() {
             <Text style={styles.userName}>{user?.name}</Text>
           </View>
           <View style={styles.headerActions}>
-            <IconButton icon={() => <Bell size={24} color="#94a3b8" />} onPress={() => {}} />
-            <TouchableOpacity onPress={logout}>
-              <Avatar.Text size={40} label={user?.name?.[0] || 'U'} style={styles.avatar} />
-            </TouchableOpacity>
-          </View>
+            {/* <IconButton
+            icon={() => <Bell size={24} color="#94a3b8" />}
+            onPress={() => {}}
+            /> */}
+            <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+              <LogOut size={20} color="#fff" />
+              <Text style={styles.logoutText}>Logout</Text>
+              </TouchableOpacity>
+              <Avatar.Text
+              size={40}
+              label={user?.name?.[0] || 'U'}
+              style={styles.avatar}
+             />
+            </View>
         </View>
 
         {/* Quick Stats */}
@@ -214,4 +244,19 @@ const styles = StyleSheet.create({
     height: '100%',
     backgroundColor: '#6366f1',
   },
+  logoutButton: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  backgroundColor: '#ef4444',
+  paddingVertical: 6,
+  paddingHorizontal: 10,
+  borderRadius: 8,
+  marginRight: 10,
+},
+
+logoutText: {
+  color: '#fff',
+  marginLeft: 6,
+  fontWeight: '600',
+},
 });

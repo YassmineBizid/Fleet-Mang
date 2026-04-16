@@ -58,5 +58,15 @@
     "lat": 36.8587351,
     "lon": 10.188232,
     "display": "Ariana, Ariana El Jadida, Délégation Ariana Ville, Gouvernorat Ariana, 2080, Tunisie"
+  },
+  "4e3791fb24ba6a754f46271f030285e3": {
+    "lat": 36.8569195,
+    "lon": 10.3261818,
+    "display": "Avenue du 7 Novembre, Carthage Byrsa, Carthage, Tunis, Gouvernorat Tunis, 2016, Tunisie"
+  },
+  "6df4786c04850720ef74e3eb871a3a1e": {
+    "lat": 36.8548083,
+    "lon": 10.3309924,
+    "display": "Carthage, Tunis, Gouvernorat Tunis, 2016, Tunisie"
   }
 }

@@ -161,10 +161,9 @@ JSON:
 """.strip()
 )
 
-llm = None
+#llm = None
 def extract_info_colab(text_input: str) -> dict:
     if llm is None:
-        print(llm)
         return extract_info_fallback(text_input)
 
     formatted_prompt = extraction_prompt.format(input=text_input[:800])
